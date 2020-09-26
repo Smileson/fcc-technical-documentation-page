@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - FCC: Technical Documentation Page</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<link class="codestyle" rel="stylesheet" href="https://highlightjs.org/static/demo/styles/atom-one-dark-reasonable.css">
+<script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<html>
+  <head>
+    <title> FCC: Technical Documentation Page </title>
+  </head>
+
+  <body>
+    <nav id="navbar">
+      <header>
+        <h2> Style Guide for C </h2>
+      </header>
+        <ul id="navbar-list">
+          <li>
+            <a class="nav-link" href="#line_length"> Line Length </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#comments"> Comments </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#conditions"> Conditions </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#switches"> Switches </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#functions"> Functions </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#indentation"> Indentation </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#loops"> Loops </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#pointers"> Pointers </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#variables"> Variables </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#structures"> Structures </a>
+          </li>
+    </nav>
+    
+    <main id="main-doc">
+      <h1> Style Guide for C </h1>
+      <p> There’s no one, right way to stylize code. But there are definitely a lot of wrong (or, at least, bad ways). Even so, CS50 does ask that you adhere to the conventions below so that we can reliably analyze your code’s style. Similarly do companies typically adopt their own, company-wide conventions for style. </p>
+      <section id="line_length" class="main-section">
+        <header>
+          <h2> Line Length </h2>
+        </header>
+        <p> By convention the maximum length of a line of code is 80 characters long in C, with that being historically grounded in standard-sized monitors on older computer terminals, which could display 24 lines vertically and 80 characters horizontally. Though modern technology has obsoleted the need to keep lines capped at 80 characters, it is still a guideline that should be considered a “soft stop,” and a line of 100 characters should really be the longest you write in C, else readers will generally need to scroll. If you need more than 100 characters, it may be time to rethink either your variable names or your overall design! </p>
+        <pre><code class="lang-c">// These next lines of code first prompt the user to give two integer values and then multiplies those two integer values together so they can be used later in the program
+int first_collected_integer_value_from_user = get_int("Integer please: ");
+int second_collected_integer_value_from_user = get_int("Another integer please: ");
+int product_of_the_two_integer_values_from_user = first_collected_integer_value_from_user * second_collected_integer_value_from_user; </code></pre>
+        <p> In other languages, particularly JavaScript, it is significantly more difficult to constrain lines to a maximum length; there, your goal should instead be to break up lines (as via <code>\n</code>) in locations that maximize readability and clarity. </p>       
+      </section>
+      
+      <section id="comments" class="main-section">
+        <header>
+          <h2> Comments </h2>
+        </header>
+        <p> Comments make code more readable, not only for others (e.g., your TF) but also for you, especially when hours, days, weeks, months, or years pass between writing and reading your own code. Commenting too little is bad. Commenting too much is bad. Where’s the sweet spot? Commenting every few lines of code (i.e., interesting blocks) is a decent guideline. Try to write comments that address one or both of these questions: </p>
+        <ol>
+          <li> What does this block do? </li>
+          <li> Why did I implement this block in this way? </li>
+        </ol>
+        <p> Within functions, use “inline comments” and keep them short (e.g., one line), else it becomes difficult to distinguish comments from code, even with <a href="https://www.wikiwand.com/en/Syntax_highlighting">syntax highlighting</a>. Place the comment above the line(s) to which it applies. No need to write in full sentences, but do capitalize the comment’s first word (unless it’s the name of a function, variable, or the like), and do leave one space between the <code>//</code> and your comment’s first character, as in: </p>
+        <pre><code class="lang-c">// Convert Fahrenheit to Celsius
+float c = 5.0 / 9.0 * (f - 32.0); </code></pre>
+        <p> In other words, don’t do this: </p>
+        <pre><code class="lang-c">//Convert Fahrenheit to Celsius
+float c = 5.0 / 9.0 * (f - 32.0); </code></pre>
+        <p> Or this: </p>
+        <pre><code class="lang-c">// convert Fahrenheit to Celsius
+float c = 5.0 / 9.0 * (f - 32.0); </code></pre>
+        <p> Or this: </p>
+        <pre><code class="lang-c">float c = 5.0 / 9.0 * (f - 32.0); // Convert Fahrenheit to Celsius </code></pre>
+        <p> Atop your .c and .h files should be a comment that summarize what your program (or that particular file) does, as in: </p>
+        <pre><code class="lang-c">// Says hello to the world </code></pre>
+              <p> Atop each of your functions (except, perhaps, <code>main</code>), meanwhile, should be a comment that summarizes what your function is doing, as in: </p>
+        <pre><code class="lang-c">// Returns the square of n
+int square(int n)
+{
+    return n * n;
+} </code></pre>
+      </section>
+      
+      <section id="conditions" class="main-section">
+        <header>
+          <h2> Conditions </h2>
+        </header>
+        <p> Conditions should be styled as follows: </p>
+        <pre><code class="lang-c">if (x > 0)
+{
+    printf("x is positive\n");
+}
+else if (x < 0)
+{
+    printf("x is negative\n");
+}
+else
+{
+    printf("x is zero\n");
+} </code></pre>
+        <p> Notice how: </p>
+        <ul>
+          <li> the curly braces line up nicely, each on its own line, making perfectly clear what’s inside the branch; </li>
+          <li> there’s a single space after each <code>if</code>; </li>
+          <li> each call to <code>printf</code> is indented with 4 spaces; </li>
+          <li> there are single spaces around the <code>></code> and around the <code><</code>; </li>
+          <li> there isn’t any space immediately after each <code>(</code> or immediately before each <code>)</code>. </li>
+        </ul>
+        <p> To save space, some programmers like to keep the first curly brace on the same line as the condition itself, but we don’t recommend, as it’s harder to read, so don’t do this: </p>
+        <pre><code class="lang-c">if (x < 0) {
+    printf("x is negative\n");
+} else if (x < 0) {
+    printf("x is negative\n");
+} </code></pre>
+        <p> And definitely don’t do this: </p>
+        <pre><code class="lang-c">if (x < 0)
+    {
+    printf("x is negative\n");
+    }
+else
+    {
+    printf("x is negative\n");
+    } </code></pre>
+      </section>
+
+      <section id="switches" class="main-section">
+        <header>
+          <h2> Switches </h2>
+        </header>
+        <p> Declare a <code>switch</code> as follows: </p>
+        <pre><code class="lang-c">switch (n)
+{
+    case -1:
+        printf("n is -1\n");
+        break;
+
+    case 1:
+        printf("n is 1\n");
+        break;
+
+    default:
+        printf("n is neither -1 nor 1\n");
+        break;
+} </code></pre>
+        <p> Notice how: </p>
+        <ul>
+          <li> each curly brace is on its own line; </li>
+          <li> there’s a single space after <code>switch</code>; </li>
+          <li> there isn’t any space immediately after each <code>(</code> or immediately before each <code>)</code>; </li>
+          <li> the switch’s cases are indented with 4 spaces; </li>
+          <li> the cases’ bodies are indented further with 4 spaces; </li>
+          <li> each <code>case</code> (including <code>default</code>) ends with a <code>break</code>. </li>
+        </ul>
+      </section> 
+
+      <section id="functions" class="main-section">
+        <header>
+          <h2> Functions </h2>
+        </header>
+        <p> In accordance with <a href="http://en.wikipedia.org/wiki/C99">C99</a>, be sure to declare <code>main</code> with: </p>
+        <pre><code class="lang-c">int main(void)
+{
+
+} </code></pre>
+        <p> or, if using the CS50 Library, with: </p>
+        <pre><code class="lang-c">#include &ltcs50.h&gt
+
+int main(int argc, string argv[])
+{
+
+} </code></pre>
+        <p> or with: </p>
+        <pre><code class="lang-c">int main(int argc, char *argv[])
+{
+
+} </code></pre>
+        <p> or even with: </p>
+        <pre><code class="lang-c">int main(int argc, char **argv)
+{
+
+} </code></pre>
+        <p> Do not declare <code>main</code> with: </p>
+        <pre><code class="lang-c">int main()
+{
+
+} </code></pre>
+        <p> or with: </p>
+        <pre><code class="lang-c">void main()
+{
+
+} </code></pre>
+      <p> or with: </p>
+      <pre><code class="lang-c">main()
+{
+
+} </code></pre>
+      <p> As for your own functions, be sure to define them similiarly, with each curly brace on its own line and with the return type on the same line as the function’s name, just as we’ve done with <code>main</code>. </p>
+      </section>
+
+      <section id="indentation" class="main-section">
+        <header>
+          <h2> Indentation </h2>
+        </header>
+        <p> Indent your code four spaces at a time to make clear which blocks of code are inside of others. If you use your keyboard’s Tab key to do so, be sure that your text editor’s configured to convert tabs (<code>\t</code>) to four spaces, else your code may not print or display properly on someone else’s computer, since <code>\t</code> renders differently in different editors. (If using CS50 IDE, it’s fine to use Tab for indentation, rather than hitting your keyboard’s space bar repeatedly, since we’ve preconfigured it to convert <code>\t</code> to four spaces.) </p>
+        <p> Here’s some nicely indented code: </p>
+        <pre><code class="lang-c">// Print command-line arguments one per line
+printf("\n");
+for (int i = 0; i < argc; i++)
+{
+    for (int j = 0, n = strlen(argv[i]); j < n; j++)
+    {
+        printf("%c\n", argv[i][j]);
+    }
+    printf("\n");
+} </code></pre>
+      </section>
+
+      <section id="loops" class="main-section">
+        <header>
+          <h2> Loops </h2>
+        </header>
+        <h3> for </h3>
+        <p> Whenever you need temporary variables for iteration, use <code>i</code>, then <code>j</code>, then <code>k</code>, unless more specific names would make your code more readable: </p>
+        <pre><code class="lang-c">for (int i = 0; i < LIMIT; i++)
+{
+    for (int j = 0; j < LIMIT; j++)
+    {
+        for (int k = 0; k < LIMIT; k++)
+        {
+            // Do something
+        }
+    }
+} </code></pre>
+        <p> If you need more than three variables for iteration, it might be time to rethink your design! </p>
+        <h3> while </h3>
+        <p> Declare <code>while</code> loops as follows: </p>
+        <pre><code class="lang-c">while (condition)
+{
+    // Do something
+} </code></pre>
+        <p> Notice how: </p>
+        <ul>
+          <li> each curly brace is on its own line; </li>
+          <li> there’s a single space after <code>while</code>; </li>
+          <li> there isn’t any space immediately after the <code>(</code> or immediately before the <code>)</code>; </li>
+          <li> the loop’s body (a comment in this case) is indented with 4 spaces. </li>
+        </ul>
+        <h3> do ... while </h3>
+        <p> Declare <code>do ... while</code> loops as follows: </p>
+        <pre><code class="lang-c">do
+{
+    // Do something
+}
+while (condition); </code></pre>
+        <p> Notice how: </p>
+        <ul> 
+          <li> each curly brace is on its own line; </li>
+          <li> there’s a single space after <code>while</code>; </li>
+          <li> there isn’t any space immediately after the <code>(</code> or immediately before the <code>)</code>; </li>
+          <li> the loop’s body (a comment in this case) is indented with 4 spaces. </li>        
+        </ul>
+      </section>
+
+      <section id="pointers" class="main-section">
+        <header>
+          <h2> Pointers </h2>
+        </header>
+        <p> When declaring a pointer, write the <code>*</code> next to the variable, as in: </p>
+        <pre><code class="lang-c">int *p; </code></pre>
+        <p> Don’t write it next to the type, as in: </p>
+        <pre><code class="lang-c">int* p; </code></pre>
+      </section>
+
+      <section id="variables" class="main-section">
+        <header>
+          <h2> Variables </h2>
+        </header>
+        <p> Because CS50 uses <a href="http://en.wikipedia.org/wiki/C99">C99</a>, do not define all of your variables at the very top of your functions but, rather, when and where you actually need them. Moreover, scope your variables as tightly as possible. For instance, if <code>i</code> is only needed for the sake of a loop, declare <code>i</code> within the loop itself: </p>
+        <pre><code class="lang-c">for (int i = 0; i < LIMIT; i++)
+{
+    printf("%i\n", i);
+} </code></pre>
+        <p> Though it’s fine to use variables like <code>i</code>, <code>j</code>, and <code>k</code> for iteration, most of your variables should be more specifically named. If you’re summing some values, for instance, call your variable <code>sum</code>. If your variable’s name warrants two words (e.g., <code>is_ready</code>), put an underscore between them, a convention popular in C though less so in other languages. </p>
+        <p> If declaring multiple variables of the same type at once, it’s fine to declare them together, as in: </p>
+        <pre><code class="lang-c">int quarters, dimes, nickels, pennies; </code></pre>
+        <p> Just don’t initialize some but not others, as in: </p>
+        <pre><code class="lang-c">int quarters, dimes = 0, nickels = 0 , pennies; </code></pre>
+        <p> Also take care to declare pointers separately from non-pointers, as in: </p>
+        <pre><code class="lang-c">int *p;
+int n; </code></pre>
+        <p> Don’t declare pointers on the same line as non-pointers, as in: </p>
+        <pre><code class="lang-c">int *p, n; </code></pre>
+      </section>
+
+      <section id="structures" class="main-section">
+        <header>
+          <h2> Structures </h2>
+        </header>
+        <p> Declare a <code>struct</code> as a type as follows, with each curly brace on its own line and members indented therein, with the type’s name also on its own line: </p>
+        <pre><code class="lang-c">typedef struct
+{
+    string name;
+    string dorm;
+}
+student; </code></pre>
+        <p> If the <code>struct</code> contains as a member a pointer to another such <code>struct</code>, declare the <code>struct</code> as having a name identical to the type, without using underscores: </p>
+        <pre><code class="lang-c">typedef struct node
+{
+    int n;
+    struct node *next;
+}
+node; </code></pre>
+      </section>
+
+      <footer>
+        <hr>
+        <p> All rights reserved:  <a href="https://cs50.harvard.edu/"> https://cs50.harvard.edu/</a> </p>
+      </footer>
+
+    </main>
+
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
